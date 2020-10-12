@@ -350,8 +350,8 @@ class Sampler(object):
         ptforms = [self.prior_transform for i in range(self.queue_size)]
         logls = [self.loglikelihood for i in range(self.queue_size)]
         kwargs = [self.kwargs for i in range(self.queue_size)]
-        args = zip(point_queue, loglstars, axes_queue,
-                   scales, ptforms, logls, kwargs)
+        args = list(map(list, zip(point_queue, loglstars, axes_queue,
+                   scales, ptforms, logls, kwargs)))
 
         if self.use_pool_evolve:
             # Use the pool to propose ("evolve") a new live point.
